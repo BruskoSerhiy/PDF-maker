@@ -4,5 +4,5 @@ import'./App.css';
 
 
 function App {
-  const []
+  const [step, setStep]
 }
