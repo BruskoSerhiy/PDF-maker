@@ -3,7 +3,12 @@
 }
 
 .page {
-    width: 100%;
-    aspect-ratio: 1/1.4142;
+    width: 210mm;
+    height: 297mm;
     background-color: #fff;
+}
+
+.header {
+    height: 60px;
+    background-color: red;
 }

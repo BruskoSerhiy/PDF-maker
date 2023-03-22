@@ -12,9 +12,14 @@ function Options() {
     const [text, setText] = useRecoilState(nameState);
 
     const handleSaveBtnClick = () => {
+        const opt = {
+            margin:       0,
+            filename:     `${text}.pdf`,
+            image:        { type: 'png' },
+          };
         const element = document.getElementById('page');
         console.log(element);
-        window.html2pdf().from(element).save();
+        window.html2pdf().set(opt).from(element).save();
     }
 
     return (
