@@ -1,0 +1,14 @@
+.root {
+    padding: 30px;
+}
+
+.page {
+    width: 210mm;
+    height: 297mm;
+    background-color: #fff;
+}
+
+.header {
+    height: 60px;
+    background-color: red;
+}
