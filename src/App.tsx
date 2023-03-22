@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import'./App.css';
 
 
-function App {
+function App () {
   const [value, setValue] = useState('')
   const [step, setStep] = useState(10)
 
   return (
-    <div className={css-root}>
+    <div className={css.root}>
        <h1>Hello World!</h1>
        <div>{step} step</div>
        <button onClick={()=> setStep(step + 1)}>Add</button>
