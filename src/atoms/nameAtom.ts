@@ -20,9 +20,9 @@ export const messageState = atom({
   default: "",
 });
 
-export const birthdayState = atom({
+export const birthdayState = atom<Date | null>({
   key: "birthdayState",
-  default: "",
+  default: null,
 });
 
 export const professionState = atom({
@@ -30,9 +30,9 @@ export const professionState = atom({
   default: "",
 });
 
-export const skillState = atom({
+export const skillState = atom<string[]>({
   key: "skillState",
-  default: "",
+  default: [],
 });
 
 export const experienceState = atom({

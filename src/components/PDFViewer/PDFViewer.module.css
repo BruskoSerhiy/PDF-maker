@@ -10,12 +10,6 @@
   padding: calc(20mm - 1px);
 }
 
-.foto {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
 .mainInformation {
   display: flex;
   flex-direction: column;
@@ -23,7 +17,45 @@
 }
 
 .headerBlock {
+  min-height: 120px;
+  position: relative;
+  padding-right: 150px;
   display: flex;
+}
+
+.photo {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clearPhotoBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 3px 5px;
+  font-size: 12px;
+  line-height: 12px;
+  color: red;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.clearPhotoBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .hLine {
