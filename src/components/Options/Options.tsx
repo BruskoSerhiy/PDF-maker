@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 
-import { Input, Button, Form, Upload } from "antd";
+import { Input, Button, Form, Select, DatePicker } from "antd";
 import {
   emailState,
   nameState,
@@ -22,9 +22,9 @@ function Options() {
   const [email, setEmail] = useRecoilState(emailState);
   const [number, setNumber] = useRecoilState(numberState);
   const [message, setMessage] = useRecoilState(messageState);
-  const [birthday, setBirthday] = useRecoilState(birthdayState);
+  const [, setBirthday] = useRecoilState(birthdayState);
   const [profession, setProfession] = useRecoilState(professionState);
-  const [skills, setSkills] = useRecoilState(skillState);
+  const [, setSkills] = useRecoilState(skillState);
   const [experience, setExperience] = useRecoilState(experienceState);
   const [education, setEducation] = useRecoilState(educationState);
   const [additional, setAdditional] = useRecoilState(additionalState);
@@ -64,10 +64,10 @@ function Options() {
         />
       </Form.Item>
       <Form.Item name="birthday" label="Дата народження">
-        <Input
-          value={birthday}
-          onChange={(event) => setBirthday(event.currentTarget.value)}
-          placeholder="Введіть дату народження"
+        <DatePicker
+          onChange={(date) => {
+            setBirthday(new Date(date as any));
+          }}
         />
       </Form.Item>
       <Form.Item name="profession" label="Ваша професія">
@@ -86,11 +86,14 @@ function Options() {
         />
       </Form.Item>
       <Form.Item name="skills" label="Ваші професійні навички">
-        <Input.TextArea
-          value={skills}
-          onChange={(event) => setSkills(event.currentTarget.value)}
-          maxLength={500}
-          placeholder="Розкажіть детальніше про свої навички"
+        <Select
+          mode="tags"
+          style={{ width: "100%" }}
+          onChange={(values) => {
+            setSkills(values);
+          }}
+          tokenSeparators={[","]}
+          options={[]}
         />
       </Form.Item>
       <Form.Item name="experience" label="Ваш досвід">
