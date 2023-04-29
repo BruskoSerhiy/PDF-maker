@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useRecoilState } from "recoil";
 
-import { Tag, QRCode, Select } from "antd";
+import { Tag, QRCode, Select, Button } from "antd";
 
 import {
   emailState,
@@ -21,6 +21,7 @@ import {
 import css from "./PDFViewer.module.css";
 
 import BaseTemplate from "../BlackAndWhite";
+import { makePDF } from "../../utils/pdf/api";
 
 
 const monthList = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
@@ -40,7 +41,7 @@ const options = [
 
 function PDFViewer() {
   const [template, setTemplate] = useState<TemplateType>("base");
-  
+
   const [name] = useRecoilState(nameState);
   const [email] = useRecoilState(emailState);
   const [number] = useRecoilState(numberState);
@@ -53,6 +54,34 @@ function PDFViewer() {
   const [additional] = useRecoilState(additionalState);
   const [image] = useRecoilState(selectedImageState);
 
+  const handlePdfBtnClick = () => {
+    const pdf = makePDF({
+      content: [
+        { qr: "text in QR", foreground: "red", background: "yellow", fit: 100 },
+        {
+          table: {
+            widths: ["50%", "50%"],
+            body: [
+              [
+                { text: `Імя : ${text}`, style: "text" },
+                { text: `email : ${email}`, style: "text" },
+              ],
+              [{ text: `Тел : ${number}`, style: "text" }, { text: "" }],
+            ],
+          },
+          layout: "noBorders",
+        },
+      ],
+      styles: {
+        text: {
+          fontSize: 14,
+          color: "#333",
+        },
+      },
+    });
+    pdf.open();
+  };
+
   return (
     <div className={css.root}>
       <Select
@@ -62,6 +91,7 @@ function PDFViewer() {
           setTemplate(value);
         }}
       />
+      <Button onClick={handlePdfBtnClick}>Згенерувати ПДФ</Button>
       {template === "custom" && (
         <BaseTemplate
           name={name}
