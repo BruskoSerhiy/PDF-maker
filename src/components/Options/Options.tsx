@@ -13,9 +13,12 @@ import {
   experienceState,
   educationState,
   additionalState,
+  selectedImageState,
 } from "../../atoms/nameAtom";
 
 import css from "./Options.module.css";
+import AvatarUploader from "../LoadingPhoto";
+import { url } from "inspector";
 
 function Options() {
   const [text, setText] = useRecoilState(nameState);
@@ -28,6 +31,10 @@ function Options() {
   const [experience, setExperience] = useRecoilState(experienceState);
   const [education, setEducation] = useRecoilState(educationState);
   const [additional, setAdditional] = useRecoilState(additionalState);
+    const [, setSelectedImage] = useRecoilState(selectedImageState);
+  
+
+
 
   const handleSaveBtnClick = () => {
     const opt = {
@@ -120,6 +127,13 @@ function Options() {
           placeholder="Ваші хоббі, мови якими володієте, тощо..."
         />
       </Form.Item>
+      <div className={css.imageBlock}>
+        <AvatarUploader
+          onSelected={function (url) {
+            setSelectedImage(url);
+          }}
+        />
+      </div>
       <Button onClick={handleSaveBtnClick} type="primary" htmlType="button">
         Save PDF
       </Button>

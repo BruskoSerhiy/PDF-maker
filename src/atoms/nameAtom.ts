@@ -49,3 +49,9 @@ export const additionalState = atom({
   key: "additionalState",
   default: "",
 });
+
+export const selectedImageState = atom({
+  key: "selectedImage",
+  default: "",
+});
+
