@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useRecoilState } from "recoil";
 
-import { Tag, QRCode, Upload, message as antMessage, Select } from "antd";
+import { Tag, QRCode, Upload, message as antMessage, Select, Button } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import {
@@ -23,6 +23,7 @@ import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import type { UploadChangeParam } from "antd/es/upload";
 
 import BaseTemplate from "./BaseTemplate";
+import { makePDF } from "../../utils/pdf/api";
 
 const monthList = ["січ", "лт", "бер"];
 
@@ -87,6 +88,34 @@ function PDFViewer() {
     }
   };
 
+  const handlePdfBtnClick = () => {
+    const pdf = makePDF({
+      content: [
+        { qr: "text in QR", foreground: "red", background: "yellow", fit: 100 },
+        {
+          table: {
+            widths: ["50%", "50%"],
+            body: [
+              [
+                { text: `Імя : ${text}`, style: "text" },
+                { text: `email : ${email}`, style: "text" },
+              ],
+              [{ text: `Тел : ${number}`, style: "text" }, { text: "" }],
+            ],
+          },
+          layout: "noBorders",
+        },
+      ],
+      styles: {
+        text: {
+          fontSize: 14,
+          color: "#333",
+        },
+      },
+    });
+    pdf.open();
+  };
+
   return (
     <div className={css.root}>
       <Select
@@ -97,6 +126,7 @@ function PDFViewer() {
           setTemplate(value);
         }}
       />
+      <Button onClick={handlePdfBtnClick}>Згенерувати ПДФ</Button>
       {template === "custom" && <BaseTemplate name={text} email={email} phone={number} />}
       {template === "base" && (
         <div className={css.page} id="page">
