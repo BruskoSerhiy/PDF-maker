@@ -63,7 +63,7 @@ function PDFViewer() {
             widths: ["50%", "50%"],
             body: [
               [
-                { text: `Імя : ${text}`, style: "text" },
+                { text: `Імя : ${name}`, style: "text" },
                 { text: `email : ${email}`, style: "text" },
               ],
               [{ text: `Тел : ${number}`, style: "text" }, { text: "" }],
