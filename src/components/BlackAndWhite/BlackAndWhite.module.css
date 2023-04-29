@@ -23,8 +23,11 @@
   overflow: hidden;
 }
 
-img {
-  border-radius: 50%;
+.avatarPosition {
+  display: block;
+  aspect-ratio: 1;
+  width: 200px;
+  max-width: 100%;
 }
 
 .main {
