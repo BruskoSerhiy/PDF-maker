@@ -18,7 +18,7 @@ import {
 
 import css from "./Options.module.css";
 import AvatarUploader from "../LoadingPhoto";
-import { url } from "inspector";
+import Switcher from "../Switcher/Switcher";
 
 function Options() {
   const [text, setText] = useRecoilState(nameState);
@@ -31,10 +31,7 @@ function Options() {
   const [experience, setExperience] = useRecoilState(experienceState);
   const [education, setEducation] = useRecoilState(educationState);
   const [additional, setAdditional] = useRecoilState(additionalState);
-    const [, setSelectedImage] = useRecoilState(selectedImageState);
-  
-
-
+  const [, setSelectedImage] = useRecoilState(selectedImageState);
 
   const handleSaveBtnClick = () => {
     const opt = {
@@ -49,6 +46,7 @@ function Options() {
 
   return (
     <div className={css.root}>
+      <Switcher/>
       <Form.Item name="name" label="Ваше ім'я">
         <Input
           value={text}
